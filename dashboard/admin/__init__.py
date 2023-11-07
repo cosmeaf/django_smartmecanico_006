@@ -5,6 +5,3 @@ from .hour_service_admin import HourServiceAdmin;
 from .services_admin import ServicesAdmin;
 from .employee_admin import Employee;
 from .appointment_admin import AppointmentAdmin;
-
-# Exemple Admin
-# from .bitcoin_admin import Item, Purchase

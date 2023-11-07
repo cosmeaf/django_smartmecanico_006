@@ -36,3 +36,12 @@ class SSLCertificate(Base):
         # Mudar as permissões dos arquivos para que apenas o proprietário possa lê-los
         os.chmod(cert_path, 0o640)
         os.chmod(key_path, 0o640)
+
+    class Meta:
+        verbose_name = "Certificado SSL"
+        verbose_name_plural = "Certificados SSL"
+        indexes = [
+                models.Index(fields=['name']),
+            ]
+    def __str__(self):
+        return self.name

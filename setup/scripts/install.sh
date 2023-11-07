@@ -5,34 +5,48 @@ GIT_REPO="https://github.com/cosmeaf/django_smartmecanico_006.git"
 CLONE_DIR="/var/www/django_smartmecanico_006"
 TARGET_DIR="/var/www/smartmecanico"
 
+# Cleaner process Django and Celery active on Server
+bash /var/www/smartmecanico/setup/scripts/stop_django.sh
+
+# Verificar e remover o diretório existente, se necessário
+if [ -d "$CLONE_DIR" ]; then
+    echo "Excluindo o diretório antigo: $CLONE_DIR"
+    rm -rf "$CLONE_DIR"
+fi
+
+if [ -d "$TARGET_DIR" ]; then
+    echo "Excluindo o diretório antigo: $TARGET_DIR"
+    rm -rf "$TARGET_DIR"
+fi
+
 # Clonar o repositório Git
 git clone "$GIT_REPO" "$CLONE_DIR"
 
 # Mover o diretório clonado para o nome alvo
 mv "$CLONE_DIR" "$TARGET_DIR"
 
-
 # Definir variáveis para o usuário
 USERNAME="developer"
 PASSWORD="Smart@2023Smart@2023"
 COMMENT="Smart Mecânico User Administrator"
 
-# Criar o usuário 'developer'
-useradd --create-home --home-dir "$TARGET_DIR" --shell /bin/bash --comment "$COMMENT" "$USERNAME"
-
-# Definir a senha para o usuário 'developer'
-echo "$USERNAME:$PASSWORD" | chpasswd
+# Criar o usuário 'developer', se ele não existir
+if id "$USERNAME" &>/dev/null; then
+    echo "Usuário $USERNAME já existe"
+else
+    echo "Criando usuário $USERNAME"
+    sudo useradd --create-home --home-dir "$TARGET_DIR" --shell /bin/bash --comment "$COMMENT" "$USERNAME"
+    echo "$USERNAME:$PASSWORD" | sudo chpasswd
+fi
 
 # Atualizar o usuário com o diretório correto e as permissões
-usermod --home "$TARGET_DIR" --move-home --shell /bin/bash --comment "$COMMENT" "$USERNAME"
+sudo usermod --home "$TARGET_DIR" --move-home --shell /bin/bash --comment "$COMMENT" "$USERNAME"
 
 # Mudar a propriedade do diretório para o usuário 'developer'
-chown -R "$USERNAME":"$USERNAME" "$TARGET_DIR"
+sudo chown -R "$USERNAME":"$USERNAME" "$TARGET_DIR"
 
-
-# Instalar dependências globais
-apt update && apt upgrade -y
-apt install -y mysql-client-core-8.0 software-properties-common python3 python3.10-venv libmysqlclient-dev python3-dev default-libmysqlclient-dev build-essential
+# Instalar dependências globais (requer privilégios de superusuário)
+# As dependências globais devem ser gerenciadas cuidadosamente. Considere usar um ambiente virtual.
 
 # Ativar o ambiente virtual e instalar as dependências
 cd "$TARGET_DIR"
@@ -63,9 +77,6 @@ EMAIL_HOST_PASSWORD='qpnmttbckwldynkf'
 EMAIL_USE_TLS=true
 EOF
 
-# Mudar a propriedade do diretório para o usuário 'developer'
-chown -R "$USERNAME":"$USERNAME" "$TARGET_DIR"
-
 # Ajustar as permissões do arquivo .env
-chown "$USERNAME":"$USERNAME" "$TARGET_DIR/.env"
-chmod 600 "$TARGET_DIR/.env"
+sudo chown "$USERNAME":"$USERNAME" "$TARGET_DIR/.env"
+sudo chmod 600 "$TARGET_DIR/.env"
