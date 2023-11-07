@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<title>{% block title %} {% endblock %}</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.png' %}" />
+	<!-- Place favicon.ico in the root directory -->
+
+	<!-- ========================= CSS here ========================= -->
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap-5.0.0-alpha-2.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'assets/css/LineIcons.2.0.css' %}" />
+	<link rel="stylesheet" href="{% static 'assets/css/animate.css' %}" />
+	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+</head>
+
+<body>
+
+
+	<!-- ========================= preloader start ========================= -->
+	<div class="preloader">
+		<div class="loader">
+			<div class="ytp-spinner">
+				<div class="ytp-spinner-container">
+					<div class="ytp-spinner-rotator">
+						<div class="ytp-spinner-left">
+							<div class="ytp-spinner-circle"></div>
+						</div>
+						<div class="ytp-spinner-right">
+							<div class="ytp-spinner-circle"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- preloader end -->
+
+	{% block content %} {% endblock %}
+	<!-- ========================= footer start ========================= -->
+	<footer id=" footer" class="footer pt-100 pb-70">
+		<div class="footer-shape">
+			<img src="{% static 'assets/img/footer/footer-left.svg' %}" alt="" class=" shape shape-1">
+			<img src="{% static 'assets/img/footer/footer-right.svg' %}" alt="" class=" shape shape-2">
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-widget wow fadeInUp" data-wow-delay=".2s">
+						<div class="logo">
+							<a href="index.html"><img src="{% static 'assets/img/logo/logo-2.svg' %}" alt="logo"></a>
+						</div>
+						<div class="download-btns">
+							<a href="javascript:void(0)">
+								<span class="icon"><i class="lni lni-apple"></i></span>
+								<span class="text">Download on the <b>App Store</b> </span>
+							</a>
+							<a href="javascript:void(0)">
+								<span class="icon"><i class="lni lni-play-store"></i></span>
+								<span class="text">GET IT ON <b>Play Store</b> </span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-widget wow fadeInUp" data-wow-delay=".4s">
+						<h3>About Us</h3>
+						<ul class="links">
+							<li>
+								<a href="javascript:void(0)">Home</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Services</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">About Us</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Contact</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-widget wow fadeInUp" data-wow-delay=".6s">
+						<h3>About</h3>
+						<ul class="links">
+							<li>
+								<a href="javascript:void(0)">Partners</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Terms of Service</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Privacy Policy</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Refund Policy</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-widget wow fadeInUp" data-wow-delay=".8s">
+						<h3>Support</h3>
+						<ul class="links">
+							<li>
+								<a href="javascript:void(0)">Open Ticket</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Community</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Return Policy</a>
+							</li>
+							<li>
+								<a href="javascript:void(0)">Accessibility</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<p>Designed and Developed by <a href="#" style="color: #fff;" rel="nofollow">Smart Mecânico</a></p>
+			</div>
+		</div>
+	</footer>
+	<!-- ========================= footer end ========================= -->
+
+	<!-- ========================= scroll-top ========================= -->
+	<a href="#" class="scroll-top btn-hover">
+		<i class="lni lni-chevron-up"></i>
+	</a>
+
+	<!-- ========================= JS here ========================= -->
+	<script src="{% static 'assets/js/bootstrap.5.0.0.alpha-2-min.js' %}"></script>
+	<script src="{% static 'assets/js/count-up.min.js' %}"></script>
+	<script src="{% static 'assets/js/wow.min.js' %}"></script>
+	<script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>

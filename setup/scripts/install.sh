@@ -4,6 +4,32 @@
 GIT_REPO="https://github.com/cosmeaf/django_smartmecanico_006.git"
 CLONE_DIR="/var/www/django_smartmecanico_006"
 TARGET_DIR="/var/www/smartmecanico"
+PPA_NAME="certbot/certbot"
+
+# Verifica se o PPA do Certbot já está adicionado
+if ! grep -q "^deb .*${PPA_NAME}" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
+    echo "Adicionando o PPA do Certbot."
+    sudo add-apt-repository -y ppa:${PPA_NAME}
+    sudo apt update
+else
+    echo "O PPA do Certbot já está adicionado. Não é necessário adicionar novamente."
+fi
+
+# Install Packages and libraries
+sudo apt update -y
+sudo apt autoremove -y
+sudo apt clean -y
+sudo apt install software-properties-common -y
+sudo apt install certbot python3-certbot-nginx nginx -y
+sudo apt install mysql-client-core-8.0 -y
+sudo apt install software-properties-common -y
+sudo apt install libmysqlclient-dev -y
+sudo apt install default-libmysqlclient-dev build-essential -y
+sudo apt install python3 python3-dev python3-venv -y
+sudo apt install gunicorn -y
+sudo apt install redis-server -y
+sudo apt install redis-tools -y 
+
 
 # Cleaner process Django and Celery active on Server
 bash /var/www/smartmecanico/setup/scripts/stop_django.sh
@@ -76,6 +102,9 @@ EMAIL_HOST_USER='cosmeaf@gmail.com'
 EMAIL_HOST_PASSWORD='qpnmttbckwldynkf'
 EMAIL_USE_TLS=true
 EOF
+
+# Mudar a propriedade do diretório para o usuário 'developer'
+sudo chown -R "$USERNAME":"$USERNAME" "$TARGET_DIR"
 
 # Ajustar as permissões do arquivo .env
 sudo chown "$USERNAME":"$USERNAME" "$TARGET_DIR/.env"

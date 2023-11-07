@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'celery',
     # Applications
     'smart_secure',
+    'web',
     'dashboard',
     'telemetry',
     'ecommerce',

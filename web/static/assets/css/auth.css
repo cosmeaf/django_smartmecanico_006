@@ -1,0 +1,119 @@
+.auth-section .auth-img {
+  width: 100%;
+}
+
+/* Escondendo a imagem no mobile e exibindo-a apenas em telas maiores */
+.auth-img img {
+  display: none;
+  width: 600px;
+}
+
+.auth-section .auth-content {
+  padding-left: 0;
+  margin-top: 50px;
+}
+
+/* Para tablets e desktops a partir de 768px */
+@media only screen and (min-width: 768px) {
+  .auth-img img {
+    display: block;
+  }
+
+  .auth-section .auth-content {
+    padding-left: 75px;
+    margin-top: 0;
+  }
+}
+
+/* Para telas maiores que 992px até 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  .auth-section .auth-content {
+    padding-left: 0;
+    margin-top: 50px;
+  }
+
+  .auth-section .auth-content .counter-up .single-counter::before,
+  .auth-section .auth-content .counter-up .single-counter::after {
+    opacity: 0;
+  }
+
+}
+
+.auth-section .auth-content .section-title h1 {
+  margin-bottom: 35px;
+}
+
+.auth-section .auth-content .section-title p {
+  margin-bottom: 35px;
+}
+
+.auth-section .auth-content .rating-meta {
+  margin-bottom: 35px;
+}
+
+.auth-section .auth-content .rating-meta h5 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-right: 20px;
+}
+
+.auth-section .auth-content .rating-meta .rating {
+  color: var(--new-primary);
+}
+
+.auth-section .auth-content .counter-up {
+  background: var(--color-green);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.auth-section .auth-content .counter-up .single-counter {
+  padding: 20px 0;
+  margin: 0 15px;
+}
+
+.auth-section .auth-content .counter-up .single-counter::before,
+.auth-section .auth-content .counter-up .single-counter::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: calc(100% - 40px);
+  background: #fff;
+  top: 20px;
+  border-radius: 5px;
+}
+
+@media (max-width: 767px) {
+
+  .auth-section .auth-content .counter-up .single-counter::before,
+  .auth-section .auth-content .counter-up .single-counter::after {
+    opacity: 0;
+  }
+
+}
+
+.auth-section .auth-content .counter-up .single-counter::before {
+  left: -50%;
+}
+
+.auth-section .auth-content .counter-up .single-counter::after {
+  right: -50%;
+}
+
+.auth-section .auth-content .counter-up .single-counter h3 {
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.auth-section .auth-content .counter-up .single-counter h5 {
+  font-weight: 500;
+  color: #fff;
+}
+
+.auth-section .card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}

@@ -1,0 +1,65 @@
+{% extends 'base_web.html' %}
+{% load static %}
+
+
+{% block scripts %}
+<script src="{% static 'assets/js/auth.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<!-- ========================= auth-section start ========================= -->
+<section id="received" class="auth-section received-section pt-100">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-6">
+        <div class="auth-img received-img wow fadeInUp" data-wow-delay=".5s">
+          <img src="{% static 'assets/img/auth/img-2.png' %}" alt="" class="img-fluid">
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+        <!-- Adicionei a classe "auth-content" -->
+        <div class="auth-content">
+          <div class="text-center">
+            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <form method="post" id="login-form">
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                  <input type="email" class="form-control form-control-user" id="email" name="email"
+                    placeholder="Digite seu E-mail">
+                </div>
+                <div class="form-group mb-3">
+                  <input type="password" class="form-control form-control-user" id="password" name="password"
+                    placeholder="Digite sua Senha">
+                </div>
+                <div class="form-group mb-3">
+                  <div class="custom-control custom-checkbox small">
+                    <input type="checkbox" class="custom-control-input" id="customCheck">
+                    <label class="custom-control-label" for="customCheck">Manter-me Conectado</label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-success btn-user btn-block">
+                  Entrar
+                </button>
+              </form>
+              <hr>
+              <div class="d-flex justify-content-between">
+                <div class="text-center">
+                  <a class="small" href="#">Recuperar Senha?</a>
+                </div>
+                <div class="text-center">
+                  <a class="small" href="#">Criar Nova Conta!</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ========================= auth-section end ========================= -->
+{% endblock %}

@@ -13,7 +13,7 @@ sudo systemctl status gunicorn.socket
 sudo systemctl status gunicorn.service
 
 # Criando Proxy Reverso
-sudo ln -s /etc/nginx/sites-available/smartmecanico /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/smartmecanico.conf /etc/nginx/sites-enabled/
 sudo nginx -t
 systemctl daemon-reload
 sudo systemctl restart nginx
@@ -21,3 +21,25 @@ sudo systemctl restart gunicorn.socket
 sudo systemctl restart gunicorn.service
 sudo systemctl status gunicorn.socket
 sudo systemctl status gunicorn.service
+
+# Removendo Services
+sudo systemctl stop nginx
+sudo systemctl stop gunicorn.socket
+sudo systemctl stop gunicorn.service 
+sudo systemctl disable gunicorn.service 
+sudo systemctl disable  gunicorn.service
+rm -rf /etc/systemd/system/gunicorn.service
+rm -rf /etc/systemd/system/gunicorn.socket
+systemctl daemon-reload
+
+# Removendo Pacotes
+sudo systemctl stop nginx
+dpkg -l | grep nginx | awk '{print $2}' | xargs apt remove -y
+dpkg -l | grep nginx | awk '{print $2}' | xargs apt purge -y
+apt autoremove
+apt clean
+apt update
+
+# Conando Redis
+sudo nano /etc/redis/redis.conf
+sudo systemctl restart redis-server
