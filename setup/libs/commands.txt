@@ -1,0 +1,23 @@
+# Ativar o Socket:
+sudo systemctl start gunicorn.socket
+sudo systemctl enable gunicorn.socket
+systemctl daemon-reload
+
+# Ativar o Serviço:
+sudo systemctl start gunicorn.service
+sudo systemctl enable gunicorn.service
+systemctl daemon-reload
+
+# Ativa systemctl
+sudo systemctl status gunicorn.socket
+sudo systemctl status gunicorn.service
+
+# Criando Proxy Reverso
+sudo ln -s /etc/nginx/sites-available/smartmecanico /etc/nginx/sites-enabled/
+sudo nginx -t
+systemctl daemon-reload
+sudo systemctl restart nginx
+sudo systemctl restart gunicorn.socket
+sudo systemctl restart gunicorn.service
+sudo systemctl status gunicorn.socket
+sudo systemctl status gunicorn.service

@@ -30,8 +30,9 @@ terminate_by_port 8000 "Gunicorn"
 
 # Encerrar processos do Celery (substitua com o seu comando Celery)
 echo "Terminating Celery processes..."
-pkill -15 -f "celery -A your_project_name worker"
+pkill -15 -f "celery -A smartmecanico worker"
 sleep 5  # Espera e verifica novamente
-pkill -9 -f "celery -A your_project_name worker"  # Força o encerramento se ainda estiver rodando
+pkill -9 -f "celery -A smartmecanico worker"
+ps -ef|grep celery | grep celery | awk '{print $2}' | xargs kill -9
 
 echo "Stop script completed."
