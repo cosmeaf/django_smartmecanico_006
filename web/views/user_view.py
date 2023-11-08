@@ -1,10 +1,12 @@
 from rest_framework import viewsets, permissions, renderers
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404, render
+from rest_framework import status
 from dashboard.models.user_model import CustomUser
 from dashboard.serializers.user_serializers import CustomUserSerializer, CustomUserDetailSerializer, CustomUserAllSerializer
+import logging
 
+logger = logging.getLogger(__name__)
 
 class IsOwner(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
@@ -44,8 +46,15 @@ class WebUserModelViewSet(viewsets.ModelViewSet):
         response = super(WebUserModelViewSet, self).destroy(request, *args, **kwargs)
         return Response({'message': 'Usuário deletado'}, template_name='dashboard/user_confirm_delete.html')
 
-    @action(detail=True, methods=['get'], renderer_classes=[renderers.JSONRenderer])
-    def all_data(self, request, pk=None):
-        user = get_object_or_404(CustomUser, pk=pk)
-        serializer = CustomUserAllSerializer(user)
-        return Response(serializer.data)
+    @action(detail=True, methods=['get'], renderer_classes=[renderers.TemplateHTMLRenderer])
+    def all_data(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        try:
+            custom_user = CustomUser.objects.get(pk=pk)
+            serializer = CustomUserAllSerializer(custom_user)
+            logger.error(f'USER DATA ALL {serializer.data}')
+            return Response({'detail': serializer.data}, template_name='dashboard/user_detail.html')
+        except CustomUser.DoesNotExist:
+            logger.error(f'User with pk {pk} does not exist.')
+            return Response({'detail': 'Usuário não encontrado.'}, status=status.HTTP_404_NOT_FOUND)
+

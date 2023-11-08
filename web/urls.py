@@ -4,6 +4,8 @@ from .views.home_view import HomeView
 from web.views.dashboard_view import DashboardView
 from rest_framework.routers import DefaultRouter
 
+app_name = 'web'
+
 # ROUTES WEB 
 from web.views.user_view import WebUserModelViewSet
 from web.views.address_view import WebAddressModelViewSet
@@ -31,7 +33,8 @@ urlpatterns = [
     # Dashboard
     path('dashboard/', DashboardView.as_view(), name="dashboard"),
     path('dashboard/', include((router.urls))),
-    re_path(r'dashboard/', include(router.urls)),
+    path('dashboard/users/<uuid:pk>/all_data/', WebUserModelViewSet.as_view({'get': 'all_data'}), name='users-all-data'),
+
 ]
 
 

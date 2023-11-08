@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
@@ -38,15 +38,14 @@ router.register(r'hourservice', HourServiceModelViewSet, basename='hourservice')
 
 
 urlpatterns = [
-    path('', include('web.urls')),
-    path('api/swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('api/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api/', include((router.urls))),
-    re_path(r'api/', include(router.urls)),
-    path('api/', include('dashboard.urls')),
+   path('api/swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+   path('api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+   path('api/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+   path('admin/', admin.site.urls),
+   path('api-auth/', include('rest_framework.urls')),
+   path('api/', include((router.urls))),
+   path('api/', include('dashboard.urls')),
+   path('', include('web.urls')),
 ]
 
 if settings.DEBUG:

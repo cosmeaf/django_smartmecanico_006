@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'dashboard' %}">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'web:dashboard' %}">
   <div class="sidebar-brand-text mx-3">Smart Mecânico</div>
 </a>
 
@@ -10,7 +10,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-  <a class="nav-link" href="{% url 'dashboard' %}">
+  <a class="nav-link" href="{% url 'web:dashboard' %}">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Dashboard</span></a>
 </li>
@@ -28,9 +28,9 @@
   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Dados dos Clientes:</h6>
-      <a class="collapse-item" href="#">Clientes</a>
-      <a class="collapse-item" href="#">Veículo</a>
-      <a class="collapse-item" href="#">Endereços</a>
+      <a class="collapse-item" href="{% url 'web:users-list' %}">Clientes</a>
+      <a class="collapse-item" href="{% url 'web:vehicle-list' %}">Veículo</a>
+      <a class="collapse-item" href="{% url 'web:address-list' %}">Endereços</a>
     </div>
   </div>
 </li>
