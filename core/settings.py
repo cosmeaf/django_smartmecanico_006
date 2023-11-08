@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'celery',
+    'crispy_forms',
+    'crispy_bootstrap5',
     # Applications
     'smart_secure',
     'web',
@@ -57,6 +59,10 @@ INSTALLED_APPS = [
     'ecommerce',
     'fleet_management',
 ]
+
+# django-crispy-forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -139,6 +145,7 @@ STATIC_ROOT = 'static/'
 
 staticfiles = [
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'web/static'),
     os.path.join(BASE_DIR, 'dashboard/static')
 ]
 
@@ -158,8 +165,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'dashboard.CustomUser'
 
 # URL
-LOGOUT_REDIRECT_URL = '/admin/'
-LOGIN_URL = '/admin/'
+LOGIN_REDIRECT_URL = '/dashboard'
+LOGIN_URL = '/login'
+LOGOUT_REDIRECT_URL = '/'
+LOGOUT_URL = '/logout'
 
 # SESSION COOKIES
 SESSION_COOKIE_AGE = 1800

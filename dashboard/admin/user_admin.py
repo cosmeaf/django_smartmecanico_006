@@ -35,7 +35,7 @@ class CustomUserAdmin(UserAdmin):
     def profile_image(self, obj):
         if obj.image:
             image_url = obj.image.url
-            return mark_safe(f'<img src="{image_url}" class="admin-profile-image" />')
+            return mark_safe(f'<img src="{image_url}" class="admin-profime-image" />')
         else:
             return '(Sem imagem)'
     profile_image.short_description = 'Imagem do Perfil'
