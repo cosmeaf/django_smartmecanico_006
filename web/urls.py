@@ -1,7 +1,21 @@
-from django.urls import path
+from django.urls import path, include, re_path
 from django.contrib.auth import views as auth_views
 from .views.home_view import HomeView
 from web.views.dashboard_view import DashboardView
+from rest_framework.routers import DefaultRouter
+
+# ROUTES WEB 
+from web.views.user_view import WebUserModelViewSet
+from web.views.address_view import WebAddressModelViewSet
+from web.views.vehicle_view import WebVehicleModelViewSet
+from web.views.appointment_view import WebAppointmentModelViewSet
+
+# Default Route web
+router = DefaultRouter()
+router.register(r'users', WebUserModelViewSet, basename='users')
+router.register(r'address', WebAddressModelViewSet, basename='address')
+router.register(r'vehicle', WebVehicleModelViewSet, basename='vehicle')
+router.register(r'appointment', WebAppointmentModelViewSet, basename='appointment')
 
 
 urlpatterns = [
@@ -16,6 +30,8 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     # Dashboard
     path('dashboard/', DashboardView.as_view(), name="dashboard"),
+    path('dashboard/', include((router.urls))),
+    re_path(r'dashboard/', include(router.urls)),
 ]
 
 

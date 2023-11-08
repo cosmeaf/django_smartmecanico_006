@@ -26,6 +26,8 @@ from dashboard.views.vehicle_view import VehicleModelViewSet
 from dashboard.views.user_view import CustomUserModelViewSet
 from dashboard.views.services_view import ServiceModelViewSet, HourServiceModelViewSet
 
+
+
 # Default Route Custom Manager
 router = DefaultRouter()
 router.register(r'users', CustomUserModelViewSet, basename='users')
@@ -33,6 +35,7 @@ router.register(r'addresses', AddressModelViewSet, basename='addresses')
 router.register(r'vehicles', VehicleModelViewSet, basename='vehicles')
 router.register(r'service', ServiceModelViewSet, basename='service')
 router.register(r'hourservice', HourServiceModelViewSet, basename='hourservice')
+
 
 urlpatterns = [
     path('', include('web.urls')),
